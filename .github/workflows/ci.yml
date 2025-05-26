@@ -1,0 +1,63 @@
+name: Python CI & Coverage Badge
+
+on:
+  push:
+    branches: [ main ] # Or your default branch, e.g., master
+  pull_request:
+    branches: [ main ] # Or your default branch
+
+permissions:
+  contents: write # Required to push the coverage badge
+
+jobs:
+  test-and-coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11"] # Specify Python versions to test against
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true # Recommended for caching
+
+    - name: Load cached venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v4
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+    - name: Install dependencies
+      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      run: poetry install --no-interaction --no-root --with test
+
+    - name: Run tests and generate coverage data
+      run: poetry run pytest --cov=. --cov-report=xml # Generates .coverage and coverage.xml
+
+    - name: Generate coverage badge
+      # This step only runs on the main branch after pushes, not on PRs or other Python versions
+      # to avoid multiple jobs trying to update the badge simultaneously.
+      # It also only runs on one specific Python version for consistency.
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.python-version == '3.11'
+      run: poetry run coverage-badge -o coverage.svg -f xml # Reads coverage.xml
+
+    - name: Commit and push coverage badge
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main' && matrix.python-version == '3.11'
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "chore: Update coverage badge"
+        file_pattern: coverage.svg
+        commit_user_name: GitHub Actions
+        commit_user_email: actions@github.com
+        commit_author: GitHub Actions <actions@github.com>

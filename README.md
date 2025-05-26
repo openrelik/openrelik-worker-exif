@@ -22,6 +22,10 @@ openrelik-worker-exif:
       # - 5678:5678 # For debugging purposes.
 ```
 
+## Code Coverage
+
+![Code Coverage](coverage.svg)
+
 ## Configuration
 
 The worker offers task-specific configurations that can be set through the OpenRelik UI when dispatching a task.
