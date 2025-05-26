@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/github/openrelik/openrelik-worker-analyzer-config/graph/badge.svg?token=IAZK4I612L)](https://codecov.io/github/openrelik/openrelik-worker-analyzer-config)
+
 # Openrelik worker exif
 ## Description
 The OpenRelik Exif Worker is a Celery-based task processor designed to extract EXIF (Exchangeable Image File Format) metadata from image files. It utilizes the powerful `exiftool` command-line utility to read and parse metadata, making it available for further processing within the OpenRelik ecosystem.
