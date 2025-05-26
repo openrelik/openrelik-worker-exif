@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/github/openrelik/openrelik-worker-analyzer-config/graph/badge.svg?token=IAZK4I612L)](https://codecov.io/github/openrelik/openrelik-worker-analyzer-config)
+[![codecov](https://codecov.io/github/openrelik/openrelik-worker-exif/graph/badge.svg?token=cv9CSSeEC3)](https://codecov.io/github/openrelik/openrelik-worker-exif)
 
 # Openrelik worker exif
 ## Description
