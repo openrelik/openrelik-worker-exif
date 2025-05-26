@@ -4,14 +4,6 @@ The OpenRelik Exif Worker is a Celery-based task processor designed to extract E
 
 ## Deploy
 
-## Configuration
-
-The worker offers task-specific configurations that can be set through the OpenRelik UI when dispatching a task.
-
-*   **Output in JSON format**:
-    *   **UI Label**: `Output in JSON format`
-    *   **Description**: If checked, ExifTool will output metadata in JSON format. Output files will have a `.json` extension and an `application/json` MIME type. Otherwise, the output will be plain text (`.txt` extension, `text/plain` MIME type).
-    *   **Default**: Unchecked (plain text output).
 
 Add the below configuration to the OpenRelik docker-compose.yml file.
 
@@ -29,6 +21,16 @@ openrelik-worker-exif:
     # ports:
       # - 5678:5678 # For debugging purposes.
 ```
+
+## Configuration
+
+The worker offers task-specific configurations that can be set through the OpenRelik UI when dispatching a task.
+
+*   **Output in JSON format**:
+    *   **UI Label**: `Output in JSON format`
+    *   **Description**: If checked, ExifTool will output metadata in JSON format. Output files will have a `.json` extension and an `application/json` MIME type. Otherwise, the output will be plain text (`.txt` extension, `text/plain` MIME type).
+    *   **Default**: Unchecked (plain text output).
+
 
 ## Test
 ```

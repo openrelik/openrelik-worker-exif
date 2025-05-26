@@ -14,12 +14,13 @@
 
 """Tests tasks."""
 
-import pytest
-from PIL import Image
-import piexif
+import json as stdjson  # Alias to avoid conflict with exiftool -json
 from pathlib import Path
 from unittest.mock import patch, MagicMock
-import json as stdjson  # Alias to avoid conflict with exiftool -json
+
+import piexif
+import pytest
+from PIL import Image
 
 from src.tasks import command  # The Celery task function
 
