@@ -1,3 +1,7 @@
+> [!CAUTION]  
+> # NOTICE - DO NOT USE
+> This repository has been archived and moved to https://github.com/openrelik/openrelik-workers/
+
 [![codecov](https://codecov.io/github/openrelik/openrelik-worker-exif/graph/badge.svg?token=cv9CSSeEC3)](https://codecov.io/github/openrelik/openrelik-worker-exif)
 
 # Openrelik worker exif
